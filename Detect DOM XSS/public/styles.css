@@ -7,16 +7,20 @@
 
 /* Set a background color and font style for the whole page */
 body {
-  background-color: #f4f4f4;
   font-family: Arial, sans-serif;
   text-align: center;
+  background-image: url('wallpaperflare.com_wallpaper (2).jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 /* Style the container for the content */
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;  
+  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -47,11 +51,47 @@ input[type="submit"] {
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
 /* Style the submit button on hover */
 input[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+/* Add the popup CSS styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#popup-message {
+  color: #333;
 }

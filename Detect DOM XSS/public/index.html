@@ -7,12 +7,46 @@
 <body>
     <div class="container">
         <h1>Input Security Scanner</h1>
-        <form method="post">
+        <form method="post" action="/submit">
             <label for="input">Enter text:</label>
             <input type="text" name="input" id="input">
             <br>
             <input type="submit" value="Submit">
         </form>
     </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup()">&times;</span>
+            <p id="popup-message">Potential security vulnerability detected.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to check for a potential security vulnerability
+        function checkForSecurityVulnerability(input) {
+            // Example logic: Check if the input contains the word "vulnerable"
+            if (input.toLowerCase().includes("vulnerable")) {
+                openPopup();
+            }
+        }
+
+        function openPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        function closePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+        // Check for a potential security vulnerability when the form is submitted
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting (for testing)
+            const input = document.getElementById('input').value;
+            checkForSecurityVulnerability(input);
+        });
+    </script>
 </body>
 </html>

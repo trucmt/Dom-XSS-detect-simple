@@ -1,18 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Define the route for handling the form submission
-router.post('/submit', (req, res) => {
-  // Vulnerability scanner middleware (you can implement this here)
-  if (req.body && hasUnsafeFunctions(req.body.input)) {
-    return res.status(400).send('Potential security vulnerability detected.');
-  }
-
-
-  // Process the form data and provide a response
-  res.send('Submitted data: ' + req.body.input);
-});
-
 // Function to check for unsafe functions in the request body
 function hasUnsafeFunctions(data) {
   // Define a list of unsafe functions to check for
@@ -30,6 +18,17 @@ function hasUnsafeFunctions(data) {
   }
   return false;
 }
-module.exports = router;
 
-// Export the router object, not an object literal
+// Define the route for handling the form submission
+router.post('/submit', (req, res) => {
+  // Check for unsafe functions in the request body
+  if (req.body && hasUnsafeFunctions(req.body)) {
+    // Send a response to trigger the popup
+    res.status(200).send('<script>openPopup();</script>');
+  } else {
+    // Process the form data and provide a response
+    res.send('Submitted data: ' + req.body.input);
+  }
+});
+
+module.exports = router;
